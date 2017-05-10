@@ -20,6 +20,15 @@ export class DataService {
         this.localStorage = window.localStorage;
     }
 
+    getUser(id: number): Observable<User> {
+        return this.getUsers()
+        .map((users) => {
+            return _.find(users, (user) =>{
+                return user.userid === id;
+            });
+        });
+    }
+
     getUsers(): Observable<User[]> {
         if (!_.isNil(this.localStorage)) {
             var localData = this.getDataFromLocalStorage<User[]>('users');

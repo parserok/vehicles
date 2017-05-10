@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
     styleUrls: ['./vehicle-map.component.css']
 })
 export class VehicleMapComponent implements OnChanges {
-    zoom: number = 10;
+    zoom: number = 12;
     lat: number;
     lng: number;
     markers: VehicleMapMarker[];

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { EventsService } from '../../services/events.service';
 import { User } from '../../models/user';
@@ -12,10 +13,8 @@ import * as _ from "lodash";
 })
 export class UsersComponent implements OnInit {
     userList: User[];
-    selectedUser: User;
-    selectedVehicle: Vehicle;
 
-    constructor(private eventsService: EventsService, private dataService: DataService) {
+    constructor(private router: Router, private eventsService: EventsService, private dataService: DataService) {
     }
 
     ngOnInit(): void {
@@ -32,17 +31,6 @@ export class UsersComponent implements OnInit {
     }
 
     onSelectUser(user: User): void {
-        this.selectedUser = user;
-        this.selectedVehicle = null;
-    }
-
-    onSelectVehicle(vehicle: Vehicle): void {
-        this.selectedVehicle = vehicle;
-    }
-
-    onSelectVehicleid(vehicleid: number): void {
-        this.selectedVehicle = _.find(this.selectedUser.vehicles, (vehicle) => {
-            return vehicle.vehicleid = vehicleid;
-        });
+        this.router.navigate(['/user', user.userid]);
     }
 }
