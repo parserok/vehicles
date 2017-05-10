@@ -1,0 +1,23 @@
+<sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+    <sebm-google-map-marker *ngFor="let m of markers; let i = index" (markerClick)="onMarkerClick(m.label, i)" [latitude]="m.lat"
+        [longitude]="m.lng" [label]="m.label" [markerDraggable]="false">
+        <sebm-google-map-info-window [isOpen]="m.isOpened">
+            <div *ngIf="m.vehicle">
+                <div style="display: inline-block">
+                    <img [src]="m.vehicle.foto" [alt]="m.vehicle.make" style="width: 100px">
+                </div>
+                <div style="display: inline-block">
+                    <div>
+                        {{m.vehicle.make}} {{m.vehicle.model}} ({{m.vehicle.year}})
+                    </div>
+                    <div>
+                        VIN: {{m.vehicle.vin}}
+                    </div>
+                    <div>
+                        Current address: {{m.address}}
+                    </div>
+                </div>
+            </div>
+        </sebm-google-map-info-window>
+    </sebm-google-map-marker>
+</sebm-google-map>

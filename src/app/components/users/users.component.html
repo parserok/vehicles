@@ -1,0 +1,32 @@
+<md-list class="list">
+    <h3 md-subheader>Users</h3>
+    <a class="user-link" md-list-item *ngFor="let user of userList" (click)="onSelectUser(user)" [class.selectedItem]="selectedUser && selectedUser.userid === user.userid">
+        <img md-list-avatar [src]="user.owner.foto" [alt]="user.owner.name">
+        <h3 md-line> {{user.owner.name}} {{user.owner.surname}}</h3>
+        <p md-line>
+            <span> Number of Vehicles : {{user?.vehicles?.length}} </span>
+        </p>
+    </a>
+</md-list>
+
+<div *ngIf="selectedUser">
+    <md-list class="list">
+        <h3 md-subheader>Vehicles of {{selectedUser.owner.name}} {{selectedUser.owner.surname}}</h3>
+        <a md-list-item *ngFor="let vehicle of selectedUser.vehicles" (click)="onSelectVehicle(vehicle)" class="vehicle-link" [class.selectedItem]="selectedVehicle && selectedVehicle.vehicleid === vehicle.vehicleid">
+            <img md-list-avatar [src]="vehicle.foto" [alt]="vehicle.make">
+            <h3 md-line> {{vehicle.make}} {{vehicle.model}} ({{vehicle.year}})</h3>
+            <p md-line class="vin-number">
+                VIN  : {{vehicle.vin}}
+            </p>
+        </a>
+    </md-list>
+
+    <md-card *ngIf="selectedUser">
+        <md-card-header>
+            <md-card-title>Vehicle on the map</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <vehicle-map [user]="selectedUser" [(selectedVehicle)]="selectedVehicle"></vehicle-map>
+        </md-card-content>
+    </md-card>
+</div>

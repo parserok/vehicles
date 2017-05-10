@@ -1,0 +1,21 @@
+.list {
+    width: 300px;
+}
+.user-link:hover {
+    cursor: pointer;
+    background-color: rgba(241,248,255, 50)
+}
+
+.selectedItem {
+    border: 1px solid lightblue;
+}
+
+.vehicle-link:hover {
+    cursor: pointer;
+    background-color: rgba(241,248,255, 50)
+}
+
+.vin-number{
+    font-size: 12px;
+    color: rgba(0,0,0,.54);
+}
